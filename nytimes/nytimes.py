@@ -65,8 +65,11 @@ def main():
     date_now = datetime.now().date()
     page = get_cover_page(date_now)
     container_client = get_authenticated_container_client()
-    container_client.upload_blob(f"{date_now.strftime('%Y_%m_%d')}.pdf", page)
-
+    container_client.upload_blob(
+        name=f"{date_now.strftime('%Y_%m_%d')}.pdf",
+        data=page,
+        overwrite=True
+    )
 
 if __name__ == '__main__':
     main()
